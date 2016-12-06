@@ -1,7 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
-const app = require('../app');
 const expect = require('chai').expect
+
+const app = require('../app');
 
 describe('GET /trailers/:trailer', () => {
   it('returns a trailer', (done) => {
