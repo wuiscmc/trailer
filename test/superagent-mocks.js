@@ -1,6 +1,6 @@
 module.exports = [
   {
-    pattern: 'viaplay-endpoint/(.*)',
+    pattern: 'https://content.viaplay.se/pc-se/film/ted-2-2015',
 
     fixtures: (match, params, headers) => {
       return {
@@ -32,7 +32,7 @@ module.exports = [
   },
 
   {
-    pattern: 'the-movie-db-endpoint/(.*)',
+    pattern: 'https://api.themoviedb.org/3/movie/(.*)',
 
     fixtures: function (match, params, headers) {
       return {

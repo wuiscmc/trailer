@@ -21,16 +21,19 @@ describe('ViaplayAPI', () => {
   describe('how the movies information is fetched', () => {
     it('returns information about the movie', (done) => {
       viaplayApi.fetch('ted-2-2015', (err, res) => {
-        if (err) return done(err);
-
+        expect(err).to.not.exist;
+        expect(res).to.not.be.empty;
         done();
       });
     });
   });
 
   describe('when the movie is not found', () => {
-    it('returns an error', () => {
-      expect(viaplayApi.fetch.bind('not-a-movie', (err, res) => {})).to.throw(Error)
+    it('returns an error', (done) => {
+      viaplayApi.fetch(null, (err, res) => {
+        expect(err).to.exist;
+        done();
+      })
     });
   });
 });

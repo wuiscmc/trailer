@@ -21,8 +21,7 @@ describe('TheMovieDBAPI', () => {
   describe('when the trailer exists', () => {
     it('returns information about it', (done) => {
       theMovieDBAPI.fetchVideo('tt2637276', (err, res) => {
-        if (err) return done(err);
-
+        expect(err).to.not.exist;
         expect(res).to.not.be.empty;
         expect(res.id).to.equal(214756);
         done();
@@ -31,8 +30,11 @@ describe('TheMovieDBAPI', () => {
   });
 
   describe('when the movie is not found', () => {
-    it('returns an error', () => {
-      expect(theMovieDBAPI.fetchVideo.bind('not-a-movie', (err, res) => {})).to.throw(Error)
+    it('returns an error', (done) => {
+      theMovieDBAPI.fetchVideo('', (err, res) => {
+        expect(err).to.exist;
+        done();
+      });
     });
   });
 });
