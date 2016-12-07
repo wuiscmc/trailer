@@ -34,21 +34,4 @@ class TheMovieDBAPI {
   }
 }
 
-
-// var viaplay = new ViaplayAPI();
-// var trailers = new TheMovieAPI(token);
-
-// viaplayAPI.call(url, (err, res) => {
-//   if (err) { throw err; }
-
-//   trailers.call(res.imdbId, (err, res) => {
-//     if (err) { throw err; }
-//     var linkBuilder = new LinkBuilder();
-
-//     return linkBuilder(res.body);
-//   });
-// });
-
-
-
 module.exports = TheMovieDBAPI;
