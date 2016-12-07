@@ -1,10 +1,9 @@
 const request = require('superagent');
 const expect = require('chai').expect;
 
-const app = require('../app');
-const TheMovieDBAPI = require('../routes/the-movie-api');
+const TheMovieDBAPI = require('../../services/the-movie-api');
 
-const config = require('./superagent-mocks');
+const config = require('../support/superagent-mocks');
 
 describe('TheMovieDBAPI', () => {
   let superagentMocks;

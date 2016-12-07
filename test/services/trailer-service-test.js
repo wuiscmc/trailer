@@ -1,10 +1,9 @@
 const request = require('superagent');
 const expect = require('chai').expect;
 
-const app = require('../app');
-const TrailerService = require('../routes/trailer-service');
+const TrailerService = require('../../services/trailer-service');
 
-const config = require('./superagent-mocks');
+const config = require('../support/superagent-mocks');
 
 describe('TrailerService', () => {
   let superagentMocks;

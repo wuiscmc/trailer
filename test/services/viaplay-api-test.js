@@ -1,10 +1,9 @@
 const request = require('superagent');
 const expect = require('chai').expect;
 
-const app = require('../app');
-const ViaplayAPI = require('../routes/viaplay-api');
+const ViaplayAPI = require('../../services/viaplay-api');
 
-const config = require('./superagent-mocks');
+const config = require('../support/superagent-mocks');
 
 describe('ViaplayAPI', () => {
   let superagentMocks;
