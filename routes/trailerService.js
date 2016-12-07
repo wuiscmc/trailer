@@ -1,7 +1,7 @@
 const request = require('superagent');
 const Throttle = require('superagent-throttle');
 
-const API_KEY = '7026f4d3d210532109f1c5a6602fbf0b';
+const API_KEY = process.env.THE_MOVIE_DB_API_KEY;
 
 const throttle = new Throttle({
   active: true,
@@ -28,7 +28,7 @@ const extractLinkFromImdbData = (payload) => {
   }
 }
 
-const fetchFromImdb = (imdbId, fn) => {
+const fetchFromImdb = (imdbId, cb) => {
   const endpoint = `https://api.themoviedb.org/3/movie/${imdbId}/videos`;
 
   request
@@ -38,24 +38,24 @@ const fetchFromImdb = (imdbId, fn) => {
   .use(throttle.plugin(endpoint))
   .end((err, res) => {
     if(err) {
-      fn(err, res);
+      cb(err, res);
     } else {
       const data = extractLinkFromImdbData(res.body)
-      fn(err, data);
+      cb(err, data);
     }
   })
 }
 
-const fetchTrailer = (url, fn) => {
+const fetchTrailer = (url, cb) => {
   request
   .get(url)
   .set('Accept', 'application/json')
   .end((err, res) => {
     if (err) {
-      fn(err, res);
+      cb(err, res);
     } else {
       const imdbData = extractImdbFromViaplayData(res.body);
-      fetchFromImdb(imdbData.id, fn);
+      fetchFromImdb(imdbData.id, cb);
     }
   });
 }

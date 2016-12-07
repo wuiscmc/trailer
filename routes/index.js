@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const trailerService = require('./trailer_service');
+const trailerService = require('./trailerService');
 
 router.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
@@ -10,9 +10,9 @@ router.use((req, res, next) => {
 router.get('/trailers', (req, res) => {
   trailerService(req.query.q, (err, payload) => {
     if(err) {
-      res.json({error: err})
+      res.status(400).json({error: err});
     } else {
-      res.json(payload)
+      res.json(payload);
     }
   })
 });
