@@ -1,6 +1,6 @@
 module.exports = [
   {
-    pattern: 'https://content.viaplay.se/pc-se/film/(.*)',
+    pattern: 'viaplay-endpoint/(.*)',
 
     fixtures: (match, params, headers) => {
       return {
@@ -32,7 +32,7 @@ module.exports = [
   },
 
   {
-    pattern: 'https://api.themoviedb.org/3/movie/(.*)',
+    pattern: 'the-movie-db-endpoint/(.*)',
 
     fixtures: function (match, params, headers) {
       return {

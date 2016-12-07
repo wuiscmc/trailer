@@ -2,8 +2,8 @@ const request = require('superagent');
 const Throttle = require('superagent-throttle');
 
 class TheMovieDBAPI {
-  constructor(api_key) {
-    this.api_key = api_key;
+  constructor() {
+    this.api_key = process.env.THE_MOVIE_DB_API_KEY;
     this.throttle = new Throttle({
       active: true,
       rate: 40,

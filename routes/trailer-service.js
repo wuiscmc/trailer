@@ -3,15 +3,23 @@ const ViaplayAPI = require('./viaplay-api');
 
 class TrailerService {
   constructor() {
-    this.trailerAPI = new TheMovieDBAPI(process.env.THE_MOVIE_DB_API_KEY);
-    this.viaplayAPI = new ViaplayAPI(process.env.VIAPLAY_ENDPOINT);
+    this.trailerAPI = new TheMovieDBAPI();
+    this.viaplayAPI = new ViaplayAPI();
   }
 
   fetchTrailer(movie, cb) {
     this.viaplayAPI.fetch(movie, (err, res) => {
+      if(err) {
+        return cb(err, null);
+      }
+
       const movieId = this.extractMovieId(res);
 
       this.trailerAPI.fetchVideo(movieId, (err, res) => {
+        if(err) {
+          return cb(err, null);
+        }
+
         cb(null, this.buildTrailerLink(res));
       });
     });

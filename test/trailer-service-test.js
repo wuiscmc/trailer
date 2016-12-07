@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const app = require('../app');
 const TrailerService = require('../routes/trailer-service');
 
-const config = require('./superagentMocks');
+const config = require('./superagent-mocks');
 
 describe('TrailerService', () => {
   let superagentMocks;

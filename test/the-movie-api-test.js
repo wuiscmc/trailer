@@ -4,11 +4,11 @@ const expect = require('chai').expect;
 const app = require('../app');
 const TheMovieDBAPI = require('../routes/the-movie-api');
 
-const config = require('./superagentMocks');
+const config = require('./superagent-mocks');
 
 describe('TheMovieDBAPI', () => {
   let superagentMocks;
-  const theMovieDBAPI = new TheMovieDBAPI('not-a-token');
+  const theMovieDBAPI = new TheMovieDBAPI();
 
   before(() => {
     superagentMocks = require('superagent-mock')(request, config);
@@ -18,11 +18,13 @@ describe('TheMovieDBAPI', () => {
     superagentMocks.unset();
   });
 
-  describe('how the trailer information is fetched', () => {
-    it('returns information about the trailer', (done) => {
+  describe('when the trailer exists', () => {
+    it('returns information about it', (done) => {
       theMovieDBAPI.fetchVideo('tt2637276', (err, res) => {
         if (err) return done(err);
 
+        expect(res).to.not.be.empty;
+        expect(res.id).to.equal(214756);
         done();
       });
     });

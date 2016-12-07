@@ -2,13 +2,13 @@ const request = require('superagent');
 const expect = require('chai').expect;
 
 const app = require('../app');
-const ViaplayAPI = require('../routes/viaplayApi');
+const ViaplayAPI = require('../routes/viaplay-api');
 
-const config = require('./superagentMocks');
+const config = require('./superagent-mocks');
 
 describe('ViaplayAPI', () => {
   let superagentMocks;
-  const viaplayApi = new ViaplayAPI('https://content.viaplay.se/pc-se/film');
+  const viaplayApi = new ViaplayAPI();
 
   before(() => {
     superagentMocks = require('superagent-mock')(request, config);
