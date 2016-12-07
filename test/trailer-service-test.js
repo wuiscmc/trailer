@@ -2,12 +2,13 @@ const request = require('superagent');
 const expect = require('chai').expect;
 
 const app = require('../app');
-const fetchTrailer = require('../routes/trailerService');
+const TrailerService = require('../routes/trailer-service');
 
 const config = require('./superagentMocks');
 
-describe('trailerService', () => {
+describe('TrailerService', () => {
   let superagentMocks;
+  const trailerService = new TrailerService();
 
   before(() => {
     superagentMocks = require('superagent-mock')(request, config);
@@ -18,10 +19,9 @@ describe('trailerService', () => {
   });
 
   it('returns a link to a trailer', (done) => {
-    fetchTrailer('https://content.viaplay.se/pc-se/film/ted-2-2015', (err, res) => {
+    trailerService.fetchTrailer('ted-2-2015', (err, res) => {
       if (err) return done(err);
 
-      expect(err).to.be.empty;
       expect(res.site).to.eq('Youtube')
       expect(res.url).to.not.be.empty;
 

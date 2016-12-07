@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const trailerService = require('./trailerService');
+const trailerService = require('./trailer-service');
 
 router.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
