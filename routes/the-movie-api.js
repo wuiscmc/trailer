@@ -1,12 +1,9 @@
 const request = require('superagent');
 const Throttle = require('superagent-throttle');
 
-const API_KEY = process.env.THE_MOVIE_DB_API_KEY;
-
-
 class TheMovieDBAPI {
-  constructor(token) {
-    this.token = token;
+  constructor(api_key) {
+    this.api_key = api_key;
     this.throttle = new Throttle({
       active: true,
       rate: 40,
@@ -24,7 +21,7 @@ class TheMovieDBAPI {
 
     request
     .get(endpoint)
-    .query({api_key: API_KEY, language: 'en-US', external_source: 'imdb_id'})
+    .query({api_key: this.api_key, language: 'en-US', external_source: 'imdb_id'})
     .set('Accept', 'application/json')
     .use(this.throttle.plugin(endpoint))
     .end((err, res) => {
