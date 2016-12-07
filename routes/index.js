@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const trailerService = require('./trailer-service');
+const TrailerService = require('./trailer-service');
 
 router.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
   next();
 });
 
-router.get('/trailers', (req, res) => {
-  trailerService(req.query.q, (err, payload) => {
+router.get('/trailers/:movie', (req, res) => {
+  const trailerService = new TrailerService();
+
+  trailerService.fetchTrailer(req.params.movie, (err, link) => {
     if(err) {
       res.status(400).json({error: err});
     } else {
-      res.json(payload);
+      res.json(link);
     }
   })
 });

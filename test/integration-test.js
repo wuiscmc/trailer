@@ -5,11 +5,8 @@ const app = require('../app');
 describe('GET /trailers/:trailer', () => {
   describe('when the movie exists', () => {
     it('returns a trailer', (done) => {
-      const viaplayUrl = 'https://content.viaplay.se/pc-se/film/ted-2-2015';
-
       request(app)
-      .get('/trailers')
-      .query({q: viaplayUrl})
+      .get('/trailers/ted-2-2015')
       .expect('Content-Type', /json/)
       .expect(200, done);
     });
@@ -17,11 +14,8 @@ describe('GET /trailers/:trailer', () => {
 
   describe('when the movie does not exist', () => {
     it('returns a 404', (done) => {
-      const viaplayurl = 'https://content.viaplay.se/pc-se/film/luis-carlos-test-2016';
-
       request(app)
-      .get('/trailers')
-      .query({q: viaplayurl})
+      .get('/trailers/luis-carlos-test-2016')
       .expect('content-type', /json/)
       .expect(400, done);
     });
