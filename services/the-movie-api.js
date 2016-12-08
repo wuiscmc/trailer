@@ -8,7 +8,7 @@ class TheMovieDBAPI {
       active: true,
       rate: 40,
       ratePer: 10000,
-      concurrent: 20,
+      concurrent: 10,
     });
   }
 

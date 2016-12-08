@@ -19,7 +19,7 @@ describe('ViaplayAPI', () => {
 
   describe('how the movies information is fetched', () => {
     it('returns information about the movie', (done) => {
-      viaplayApi.fetch('ted-2-2015', (err, res) => {
+      viaplayApi.fetch('https://content.viaplay.se/pc-se/film/ted-2-2015', (err, res) => {
         expect(err).to.not.exist;
         expect(res).to.not.be.empty;
         done();

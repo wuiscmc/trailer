@@ -1,13 +1,13 @@
 const request = require('superagent');
 
 class ViaplayAPI {
-  fetch (movieId, cb) {
-    if (!movieId) {
+  fetch (movieUrl, cb) {
+    if (!movieUrl) {
       return cb(new Error("not a movie id"), null)
     };
 
     request
-    .get(`https://content.viaplay.se/pc-se/film/${movieId}`)
+    .get(movieUrl)
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) {
