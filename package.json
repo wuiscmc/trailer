@@ -9,7 +9,7 @@
   "dependencies": {
     "debug": "~2.2.0",
     "dotenv": "^2.0.0",
-    "express": "~4.14.0",
+    "express": "~4.17.3",
     "morgan": "~1.9.1",
     "superagent": "^3.1.0",
     "superagent-throttle": "^0.2.1"
